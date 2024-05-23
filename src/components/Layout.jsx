@@ -1,13 +1,19 @@
 import styled from "styled-components";
 
 const StyledLayout = styled.div`
-  margin: 0 auto;
-  padding: 20px;
-  max-width: 1200px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  background-color: ${(props) => (props.$active ? "blue" : "gray")};
 `;
-function Layout({ children }) {
-  return <StyledLayout>{children}</StyledLayout>;
+function Layout({ children, active, onClick }) {
+  return (
+    <StyledLayout $active={active} onClick={onClick}>
+      {active ? "Active" : "Inactive"} {children}
+    </StyledLayout>
+  );
 }
 
 export default Layout;
