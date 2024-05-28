@@ -23,26 +23,18 @@ const MonthContainer = styled.div`
   grid-template-columns: repeat(6, 1fr);
 `;
 
-function Calendar({ monthy, setMonthy }) {
+function Calendar({ selectedMonth, setSelectedMonth }) {
   const selectMonth = (month) => {
-    setMonthy(month);
+    localStorage.setItem("selectMonth", month);
+    setSelectedMonth(month);
   };
-
-  // const test = ({list,setList}) => {
-  //   const date = "2024-01-02"
-  //   console.log(date.split("-"[1])) // 0 제거 01,02,03...
-  //   const deleteList = (매개변수) => {
-  //     const 변수(배열임) = list.filter((item)=>item.id !== 매개변수)
-  //     setList(변수)
-  //   }
-  // }
 
   return (
     <MonthContainer>
       {monthList.map((month) => (
         <StyledMonth
           onClick={() => selectMonth(month)}
-          $isSelected={month === monthy}
+          $isSelected={month === selectedMonth}
           key={month}
         >
           {month}월

@@ -88,6 +88,10 @@ function Detail({ list, setList }) {
     }
   }, [id, list]);
 
+  // useEffect(() => {
+  //   localStorage.setItem("expense", list);
+  // }, [list]);
+
   const handleUpdate = () => {
     console.log(selectedList);
     const updatedList = list.map((item) =>

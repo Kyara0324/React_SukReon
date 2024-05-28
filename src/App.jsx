@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import GlobalStyle from "./components/GlobalStyle";
 
@@ -8,23 +8,31 @@ import Detail from "./components/Detail";
 import ListItem from "./components/ListItem";
 import uuid from "react-uuid";
 
+const initialState = [
+  {
+    id: uuid(),
+    date: "2024-01-02",
+    item: "의류",
+    amount: "10000",
+    content: "옷 샀음",
+  },
+  {
+    id: uuid(),
+    date: "2024-01-02",
+    item: "식비",
+    amount: "30000",
+    content: "밥 먹음",
+  },
+];
+
 function App() {
-  const [list, setList] = useState([
-    {
-      id: uuid(),
-      date: "2024-01-02",
-      item: "의류",
-      amount: "10000",
-      content: "옷 샀음",
-    },
-    {
-      id: uuid(),
-      date: "2024-01-02",
-      item: "식비",
-      amount: "30000",
-      content: "밥 먹음",
-    },
-  ]);
+  const savedData = JSON.parse(localStorage.getItem("expense"));
+
+  const [list, setList] = useState(savedData || initialState);
+
+  // useEffect(() => {
+  //   localStorage.setItem("expense", list);
+  // }, [list]);
 
   return (
     <>

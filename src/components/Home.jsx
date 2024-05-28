@@ -17,8 +17,8 @@ const StyledBackGround = styled.div`
 `;
 
 function Home({ list, setList }) {
-  const [monthy, setMonthy] = useState(1);
-  console.log(monthy);
+  const [selectedMonth, setSelectedMonth] = useState(1);
+  console.log(selectedMonth);
 
   const [date, setDate] = useState("");
   const [item, setItem] = useState("");
@@ -58,8 +58,11 @@ function Home({ list, setList }) {
           setContent={setContent}
           addList={addList}
         />
-        <Calendar monthy={monthy} setMonthy={setMonthy} />
-        <ListItem list={list} />
+        <Calendar
+          selectedMonth={selectedMonth}
+          setSelectedMonth={setSelectedMonth}
+        />
+        <ListItem list={list} selectedMonth={selectedMonth} />
       </StyledBackGround>
     </StyledHome>
   );

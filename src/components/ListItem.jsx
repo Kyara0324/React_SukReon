@@ -13,7 +13,7 @@ const StyledItem = styled.div`
   cursor: pointer;
 `;
 
-function ListItem({ list }) {
+function ListItem({ list, selectedMonth }) {
   const navigate = useNavigate();
   const moveDetail = (detailId) => {
     navigate(`/Detail/${detailId}`);
@@ -21,14 +21,16 @@ function ListItem({ list }) {
 
   return (
     <div>
-      {list.map((item) => (
-        <StyledItem onClick={() => moveDetail(item.id)} key={item.id}>
-          <p>{item.date}</p>
-          <p>{item.item}</p>
-          <p>{item.amount}</p>
-          <p>{item.content}</p>
-        </StyledItem>
-      ))}
+      {list
+        .filter((item) => parseInt(item.date.split("-")[1]) === selectedMonth)
+        .map((item) => (
+          <StyledItem onClick={() => moveDetail(item.id)} key={item.id}>
+            <p>{item.date}</p>
+            <p>{item.item}</p>
+            <p>{item.amount}</p>
+            <p>{item.content}</p>
+          </StyledItem>
+        ))}
     </div>
   );
 }
