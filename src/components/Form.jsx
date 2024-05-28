@@ -8,10 +8,10 @@ const StyledDiv = styled.div`
 function Form({
   date,
   setDate,
-  title,
-  setTitle,
-  pride,
-  setPride,
+  item,
+  setItem,
+  amount,
+  setAmount,
   content,
   setContent,
   addList,
@@ -31,16 +31,16 @@ function Form({
           <p>항목</p>
           <input
             type="text"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
+            value={item}
+            onChange={(event) => setItem(event.target.value)}
           ></input>
         </div>
         <div>
           <p>금액</p>
           <input
             type="text"
-            value={pride}
-            onChange={(event) => setPride(event.target.value)}
+            value={amount}
+            onChange={(event) => setAmount(event.target.value)}
           ></input>
         </div>
         <div>

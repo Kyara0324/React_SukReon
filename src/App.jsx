@@ -13,15 +13,15 @@ function App() {
     {
       id: uuid(),
       date: "2024-01-02",
-      title: "의류",
-      pride: "10000",
+      item: "의류",
+      amount: "10000",
       content: "옷 샀음",
     },
     {
       id: uuid(),
       date: "2024-01-02",
-      title: "식비",
-      pride: "30000",
+      item: "식비",
+      amount: "30000",
       content: "밥 먹음",
     },
   ]);

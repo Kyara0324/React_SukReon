@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledList = styled.div`
@@ -71,38 +71,95 @@ const Background = styled.div`
 `;
 
 function Detail({ list, setList }) {
-  const [selectedList, setSelectedList] = useState({});
+  const [selectedList, setSelectedList] = useState({
+    id: "",
+    date: "",
+    item: "",
+    amount: "",
+    content: "",
+  });
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const listId = list.find((searchListId) => searchListId.id === id);
-    setSelectedList(listId);
-  }, [id]);
+    if (listId) {
+      setSelectedList(listId);
+    }
+  }, [id, list]);
+
+  const handleUpdate = () => {
+    console.log(selectedList);
+    const updatedList = list.map((item) =>
+      item.id === id ? { ...selectedList } : item
+    );
+    setList(updatedList);
+    navigate("/");
+  };
+
+  const handleDelete = () => {
+    const updatedList = list.filter((item) => item.id !== id);
+    setList(updatedList);
+    navigate("/");
+  };
+
+  const handleBack = () => {
+    navigate("/");
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setSelectedList({ ...selectedList, [name]: value });
+  };
 
   return (
     <Background>
       <StyledList>
         <Form>
-          <p>{selectedList?.date}</p>
-          <Input type="date" id="date" name="date" placeholder="날짜" />
+          <Label htmlFor="date">날짜</Label>
+          <Input
+            type="date"
+            id="date"
+            name="date"
+            value={selectedList.date || ""}
+            onChange={handleChange}
+          />
 
-          <p>{selectedList?.title}</p>
-          <Input type="text" id="item" name="item" placeholder="항목" />
+          <Label htmlFor="item">항목</Label>
+          <Input
+            type="text"
+            id="item"
+            name="item"
+            value={selectedList.item || ""}
+            onChange={handleChange}
+          />
 
-          <p>{selectedList?.pride}</p>
-          <Input type="number" id="amount" name="amount" placeholder="금액" />
+          <Label htmlFor="amount">금액</Label>
+          <Input
+            type="number"
+            id="amount"
+            name="amount"
+            value={selectedList.amount || ""}
+            onChange={handleChange}
+          />
 
-          <p>{selectedList?.content}</p>
-          <Input type="text" id="content" name="content" placeholder="내용" />
+          <Label htmlFor="content">내용</Label>
+          <Input
+            type="text"
+            id="content"
+            name="content"
+            value={selectedList.content || ""}
+            onChange={handleChange}
+          />
 
           <Buttons>
-            <Button type="button" className="update">
+            <Button type="button" className="update" onClick={handleUpdate}>
               수정
             </Button>
-            <Button type="button" className="delete">
+            <Button type="button" className="delete" onClick={handleDelete}>
               삭제
             </Button>
-            <Button type="button" className="back">
+            <Button type="button" className="back" onClick={handleBack}>
               뒤로 가기
             </Button>
           </Buttons>

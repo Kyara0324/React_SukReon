@@ -14,7 +14,7 @@ const StyledMonth = styled.button`
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  background-color: ${(props) => (props.isSelected ? "blue" : "red")};
+  background-color: ${(props) => (props.$isSelected ? "blue" : "red")};
 `;
 
 const MonthContainer = styled.div`
@@ -27,12 +27,22 @@ function Calendar({ monthy, setMonthy }) {
   const selectMonth = (month) => {
     setMonthy(month);
   };
+
+  // const test = ({list,setList}) => {
+  //   const date = "2024-01-02"
+  //   console.log(date.split("-"[1])) // 0 제거 01,02,03...
+  //   const deleteList = (매개변수) => {
+  //     const 변수(배열임) = list.filter((item)=>item.id !== 매개변수)
+  //     setList(변수)
+  //   }
+  // }
+
   return (
     <MonthContainer>
       {monthList.map((month) => (
         <StyledMonth
           onClick={() => selectMonth(month)}
-          isSelected={month === monthy}
+          $isSelected={month === monthy}
           key={month}
         >
           {month}월

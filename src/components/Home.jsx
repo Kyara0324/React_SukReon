@@ -21,8 +21,8 @@ function Home({ list, setList }) {
   console.log(monthy);
 
   const [date, setDate] = useState("");
-  const [title, setTitle] = useState("");
-  const [pride, setPride] = useState("");
+  const [item, setItem] = useState("");
+  const [amount, setAmount] = useState("");
   const [content, setContent] = useState("");
 
   const myUUID = uuid();
@@ -33,14 +33,14 @@ function Home({ list, setList }) {
     const newList = {
       id: uuid(),
       date,
-      title,
-      pride,
+      item,
+      amount,
       content,
     };
     setList([...list, newList]);
     setDate("");
-    setTitle("");
-    setPride("");
+    setItem("");
+    setAmount("");
     setContent("");
   };
 
@@ -50,18 +50,16 @@ function Home({ list, setList }) {
         <Form
           date={date}
           setDate={setDate}
-          title={title}
-          setTitle={setTitle}
-          pride={pride}
-          setPride={setPride}
+          item={item}
+          setItem={setItem}
+          amount={amount}
+          setAmount={setAmount}
           content={content}
           setContent={setContent}
           addList={addList}
         />
         <Calendar monthy={monthy} setMonthy={setMonthy} />
         <ListItem list={list} />
-        {/* list 컴포넌트 완성하고 풀기 */}
-        {/* map을 공부하면 ListItem을 어떻게 써야할지 알수있음 */}
       </StyledBackGround>
     </StyledHome>
   );
