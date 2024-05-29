@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import GlobalStyle from "./components/GlobalStyle";
 
 import Home from "./components/Home";
@@ -30,15 +30,10 @@ function App() {
 
   const [list, setList] = useState(savedData || initialState);
 
-  // useEffect(() => {
-  //   localStorage.setItem("expense", list);
-  // }, [list]);
-
   return (
     <>
       <GlobalStyle />
 
-      {/* <BrowserRouter> */}
       <Routes>
         <Route path="/" element={<Home list={list} setList={setList} />} />
         <Route
@@ -46,7 +41,6 @@ function App() {
           element={<Detail list={list} setList={setList} />}
         />
       </Routes>
-      {/* </BrowserRouter> */}
     </>
   );
 }
